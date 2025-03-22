@@ -8,7 +8,9 @@ import (
 func GetAllUsers() ([]models.User, error) {
 	return repository.GetAllUsers()
 }
-
+func GetUsersWithPagination(page int, pageSize int) ([]models.User, error) {
+	return repository.GetUsersWithPagination(page, pageSize)
+}
 func CreateUser(user models.User) (models.User, error) {
 	return repository.CreateUser(user)
 }

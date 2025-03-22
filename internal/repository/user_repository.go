@@ -12,6 +12,19 @@ func GetAllUsers() ([]models.User, error) {
 	}
 	return users, nil
 }
+func GetUsersWithPagination(page int, pageSize int) ([]models.User, error) {
+	var users []models.User
+
+	// Calculate offset based on page and pageSize
+	offset := (page - 1) * pageSize
+
+	// Fetch users with pagination
+	if err := db.DB.Limit(pageSize).Offset(offset).Find(&users).Error; err != nil {
+		return nil, err
+	}
+
+	return users, nil
+}
 
 func CreateUser(user models.User) (models.User, error) {
 	if err := db.DB.Create(&user).Error; err != nil {
