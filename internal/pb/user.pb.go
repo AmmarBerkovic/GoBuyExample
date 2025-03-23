@@ -201,3 +201,7 @@ func file_internal_pb_user_proto_init() {
 	file_internal_pb_user_proto_goTypes = nil
 	file_internal_pb_user_proto_depIdxs = nil
 }
+// TableName overrides the default table name
+func (User) TableName() string {
+	return "users"
+}
