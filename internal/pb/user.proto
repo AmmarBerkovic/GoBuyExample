@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/AmmarBerkovic/GoBuyExample/internal/pb";
+
+message User {
+    uint32 id = 1;
+    string name = 2;
+    string email = 3;
+    int32 age = 4;
+}
+
+message UsersResponse {
+    repeated User users = 1;
+}
