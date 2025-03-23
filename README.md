@@ -7,7 +7,6 @@ GoBuyExample is a web application built with Go using the **Chi router**, **GORM
 - [Tech Stack](#tech-stack)
 - [Installation & Setup](#installation--setup)
 - [Configuration](#configuration)
-- [Database Setup](#database-setup)
 - [Proposed SQL Queries](#proposed-sql-queries)
 - [API Endpoints](#api-endpoints)
 - [Project Structure](#project-structure)
@@ -57,14 +56,6 @@ database:
   name: "gobuyexample"
 ```
 Modify these values based on your MySQL setup.
-
-## Database Setup
-1. Ensure MySQL is running.
-2. Create the database:
-   ```sql
-   CREATE DATABASE gobuyexample;
-   ```
-3. Migrate the `users` table automatically by running the project (GORM handles migrations).
 
 ## Proposed SQL Queries
 For local testing, you can execute the following SQL commands:
