@@ -1,7 +1,5 @@
 # GoBuyExample
 
-GoBuyExample is a web application built with Go using the **Chi router**, **GORM ORM**, and **MySQL**. It follows a layered architecture to separate concerns effectively. This project demonstrates CRUD operations on a `users` table with well-structured database interactions and business logic.
-
 ## Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
