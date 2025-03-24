@@ -2,7 +2,7 @@ package repository
 
 import (
 	"github.com/AmmarBerkovic/GoBuyExample/db"
-	"github.com/AmmarBerkovic/GoBuyExample/internal/pb"
+	"github.com/AmmarBerkovic/GoBuyExample/internal/models"
 )
 
 // Temporary struct for database operations (due to GORM struct tag requirements)
@@ -14,8 +14,8 @@ type UserDB struct {
 }
 
 // Convert UserDB to pb.User
-func toProtoUser(user UserDB) *pb.User {
-	return &pb.User{
+func toProtoUser(user UserDB) *models.User {
+	return &models.User{
 		Id:    uint32(user.ID),
 		Name:  user.Name,
 		Email: user.Email,
@@ -24,7 +24,7 @@ func toProtoUser(user UserDB) *pb.User {
 }
 
 // Convert pb.User to UserDB
-func toDBUser(user *pb.User) UserDB {
+func toDBUser(user *models.User) UserDB {
 	return UserDB{
 		ID:    uint(user.Id),
 		Name:  user.Name,
@@ -33,20 +33,20 @@ func toDBUser(user *pb.User) UserDB {
 	}
 }
 
-func GetAllUsers() ([]*pb.User, error) {
+func GetAllUsers() ([]*models.User, error) {
 	var users []UserDB
 	if err := db.DB.Find(&users).Error; err != nil {
 		return nil, err
 	}
 
-	var protoUsers []*pb.User
+	var protoUsers []*models.User
 	for _, user := range users {
 		protoUsers = append(protoUsers, toProtoUser(user))
 	}
 	return protoUsers, nil
 }
 
-func GetUsersWithPagination(page int, pageSize int) ([]*pb.User, error) {
+func GetUsersWithPagination(page int, pageSize int) ([]*models.User, error) {
 	var users []UserDB
 	offset := (page - 1) * pageSize
 
@@ -54,14 +54,14 @@ func GetUsersWithPagination(page int, pageSize int) ([]*pb.User, error) {
 		return nil, err
 	}
 
-	var protoUsers []*pb.User
+	var protoUsers []*models.User
 	for _, user := range users {
 		protoUsers = append(protoUsers, toProtoUser(user))
 	}
 	return protoUsers, nil
 }
 
-func CreateUser(user *pb.User) (*pb.User, error) {
+func CreateUser(user *models.User) (*models.User, error) {
 	dbUser := toDBUser(user)
 	if err := db.DB.Create(&dbUser).Error; err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ func CreateUser(user *pb.User) (*pb.User, error) {
 	return toProtoUser(dbUser), nil
 }
 
-func UpdateUser(id string, user *pb.User) (*pb.User, error) {
+func UpdateUser(id string, user *models.User) (*models.User, error) {
 	var existingUser UserDB
 	if err := db.DB.First(&existingUser, id).Error; err != nil {
 		return nil, err

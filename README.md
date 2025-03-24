@@ -88,10 +88,35 @@ VALUES
   ('Olivia Turner', 'olivia.turner@example.com', 33);
 ```
 
+## Generating User with Protobuf
+The project supports user creation with **Protocol Buffers (Protobuf)** for efficient serialization. To generate the user model:
+1. Install the Protocol Buffers compiler (`protoc`):
+   ```sh
+   go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+   ```
+2. Define the `user.proto` file:
+   ```proto
+   syntax = "proto3";
+
+   package user;
+
+   message User {
+     int32 id = 1;
+     string name = 2;
+     string email = 3;
+     int32 age = 4;
+   }
+   ```
+3. Generate Go code from the `.proto` file:
+   ```sh
+   protoc --go_out=. --go_opt=paths=source_relative user.proto
+   ```
+4. Use the generated Go struct in your application to handle user data efficiently.
+
 ## API Endpoints
 | Method | Endpoint      | Description          |
 |--------|-------------|----------------------|
-| GET    | /users      | Fetch all users      |
+| GET    | /users      | Fetch all users (supports `page` and `page_size` parameters) |
 | POST   | /users      | Create a new user    |
 | PUT    | /users/{id} | Update a user        |
 | DELETE | /users/{id} | Delete a user        |

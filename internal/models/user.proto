@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package pb;
+package models;
 
-option go_package = "github.com/AmmarBerkovic/GoBuyExample/internal/pb";
+option go_package = "github.com/AmmarBerkovic/GoBuyExample/internal/models";
 
 message User {
     uint32 id = 1;
