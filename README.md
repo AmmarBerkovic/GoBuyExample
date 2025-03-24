@@ -1,4 +1,4 @@
-# GoBuyExample
+# GO User API
 
 ## Table of Contents
 - [Features](#features)
