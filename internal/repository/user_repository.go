@@ -16,7 +16,7 @@ type UserDB struct {
 // Convert UserDB to pb.User
 func toProtoUser(user UserDB) *models.User {
 	return &models.User{
-		Id:    uint32(user.ID),
+		// Id:    uint32(user.ID),
 		Name:  user.Name,
 		Email: user.Email,
 		Age:   user.Age,
